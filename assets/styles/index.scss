@@ -1,7 +1,14 @@
 @import '~bootstrap/scss/bootstrap';
 .box {
   border: 1px solid black;
+  font-size: 10rem;
   height: 200px;
+  text-align: center;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 10px 20px;
 }
 
 #hide {

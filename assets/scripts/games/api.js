@@ -44,7 +44,7 @@ const create = function () {
 }
 
 /*
-const select = function () {
+const game = function () {
   return $.ajax({
     headers: {
       Authorization: 'Token token=' + store.user.token
@@ -58,5 +58,5 @@ module.exports = {
   show,
   create,
   update // ,
-  // select
+  // game
 }

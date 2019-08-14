@@ -9,5 +9,5 @@ const gameEvents = require('./games/events.js')
 
 $(() => {
   authEvents.addHandlers()
-  $('.box').on('click', gameEvents.onSelect)
+  gameEvents.addHandlers()
 })

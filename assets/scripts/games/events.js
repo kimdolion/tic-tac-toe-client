@@ -3,6 +3,11 @@ const api = require('./api.js')
 const ui = require('./ui.js')
 const getFormFields = require('../../../lib/get-form-fields.js')
 
+// let gameboard = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+const player1 = 'X'
+const player2 = 'O'
+let currentPlayer = player1
+
 const onGetGames = function () {
   api.index()
     .then(ui.onIndexSuccess)
@@ -33,16 +38,40 @@ const onCreateGame = function (event) {
     .catch(ui.onError)
 }
 
-const onSelect = function (event) {
-  event.preventDefault()
-  console.log('Clicked!')
-  ui.selectSuccess()
+const onClickX = function (event) {
+  if ($(event.target).html() !== 'O' && $(event.target).html() !== 'X') {
+    console.log('Clicked!')
+    $(event.target).text('X')
+    ui.onClickSuccessX()
+    currentPlayer = player1
+  }
+}
+
+const onClickO = function (event) {
+  if ($(event.target).html() !== 'O' && $(event.target).html() !== 'X') {
+    console.log('Clicked!')
+    $(event.target).text('O')
+    ui.onClickSuccessO()
+    currentPlayer = player2
+  }
+}
+
+const onSwitchPlayer = (event) => {
+  if (currentPlayer === 'X') {
+    onClickO(event)
+  } else {
+    onClickX(event)
+  } console.log('currentPlayer is', currentPlayer)
+}
+
+const addHandlers = () => {
+  $('games-index').on('submit', onGetGames)
+  $('game-show').on('submit', onGetGame)
+  $('game-update').on('submit', onUpdateGame)
+  $('game-create').on('submit', onCreateGame)
+  $('.box').on('click', onSwitchPlayer)
 }
 
 module.exports = {
-  onGetGames,
-  onGetGame,
-  onUpdateGame,
-  onCreateGame,
-  onSelect
+  addHandlers
 }

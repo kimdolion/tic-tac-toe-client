@@ -1,6 +1,6 @@
 'use strict'
 
-const store = require('../store')
+// const store = require('../store')
 
 const onIndexSuccess = function (responseData) {
   console.log(responseData)
@@ -56,26 +56,26 @@ const onError = function (err) {
   $('form').trigger('reset')
 }
 
-const selectSuccess = function () {
-  $('#gameboard-message').text('Selected a box!')
+const onClickSuccessX = function () {
+  $('#gameboard-message').text('Player X took their turn!')
   $('#gameboard-message').removeClass()
   $('#gameboard-message').addClass('success')
-  $(event.target).html('X')
+  $(event.target).css('background-color', 'coral')
   console.log('selectSuccess')
 }
-
-const selectFailure = function (error) {
-  $('#gameboard-message').text(error, 'You cannot select that')
+const onClickSuccessO = function () {
+  $('#gameboard-message').text('Player O took their turn!')
   $('#gameboard-message').removeClass()
-  $('#gameboard-message').addClass('select failure')
+  $('#gameboard-message').addClass('success')
+  $(event.target).css('background-color', 'lightblue')
+  console.log('selectSuccess')
 }
-
 module.exports = {
   onIndexSuccess,
   onShowSuccess,
   onUpdateSuccess,
   onCreateSuccess,
   onError,
-  selectSuccess,
-  selectFailure
+  onClickSuccessX,
+  onClickSuccessO
 }
