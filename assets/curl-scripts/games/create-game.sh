@@ -3,7 +3,7 @@ curl "https://tic-tac-toe-wdi.herokuapp.com/games/create-game" \
   --request POST\
   --header "Content-Type: application/json" \
   --header "Authorization: Token token=${TOKEN}" \
-<<<<<<< HEAD
+
   --data '{
     "game": {
     "id": "'"${ID}"'"
@@ -16,7 +16,4 @@ curl "https://tic-tac-toe-wdi.herokuapp.com/games/create-game" \
     "player_o": null
   }
 }'
-=======
->>>>>>> development
-
 echo

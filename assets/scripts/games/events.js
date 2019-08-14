@@ -1,8 +1,4 @@
 'use strict'
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Fix issues
 const api = require('./api.js')
 const ui = require('./ui.js')
 const getFormFields = require('../../../lib/get-form-fields.js')
@@ -74,24 +70,6 @@ const addHandlers = () => {
   $('game-update').on('submit', onUpdateGame)
   $('game-create').on('submit', onCreateGame)
   $('.box').on('click', onSwitchPlayer)
-<<<<<<< HEAD
-=======
-
-const api = require('./api')
-const ui = require('./ui')
-
-const onSelect = function (event) {
-  event.preventDefault()
-  console.log('select ran!')
-    .then(ui.selectSuccess)
-    .catch(ui.selectFailure)
-}
-
-const addHandlers = () => {
-  $('#gameboard').on('click', onSelect)
->>>>>>> Add curl scripts for the games
-=======
->>>>>>> Fix issues
 }
 
 module.exports = {
