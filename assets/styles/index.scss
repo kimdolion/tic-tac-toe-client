@@ -1,5 +1,6 @@
 @import '~bootstrap/scss/bootstrap';
 .box {
+<<<<<<< HEAD
   border: 1px solid black;
   font-size: 10rem;
   height: 200px;
@@ -9,6 +10,12 @@
 .container {
   margin: 0 auto;
   padding: 10px 20px;
+=======
+  border: 2px solid black;
+  height: 200px;
+  display: flex;
+  align-items: center;
+>>>>>>> Add curl scripts for the games
 }
 
 #hide {
