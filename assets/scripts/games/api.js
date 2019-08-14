@@ -3,45 +3,60 @@
 const config = require('../config')
 const store = require('../store')
 
-const select = function (data) {
+const index = function () {
   return $.ajax({
-    url: config.apiUrl + '/sign-up',
-    method: 'POST',
-    data
-  })
-}
-
-const signIn = function (data) {
-  return $.ajax({
-    url: config.apiUrl + '/sign-in',
-    method: 'POST',
-    data
-  })
-}
-
-const signOut = function () {
-  return $.ajax({
-    url: config.apiUrl + '/sign-out',
-    method: 'DELETE',
+    url: config.apiUrl + '/games',
+    method: 'GET',
     headers: {
       Authorization: 'Token token=' + store.user.token
     }
   })
 }
 
-const changePassword = function (data) {
-  console.log('data is ', data)
+const show = function (formData) {
   return $.ajax({
-    url: config.apiUrl + '/change-password',
-    method: 'PATCH',
+    url: config.apiUrl + '/games/' + formData.game.id,
+    method: 'GET',
     headers: {
       Authorization: 'Token token=' + store.user.token
-    },
-    data
-    // data: data
+    }
   })
 }
 
+const update = function (formData) {
+  return $.ajax({
+    url: config.apiUrl + '/games/' + formData.game.id,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
+const create = function () {
+  return $.ajax({
+    url: config.apiUrl + '/games',
+    method: 'POST',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
+/*
+const select = function () {
+  return $.ajax({
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+*/
+
 module.exports = {
-  select
+  index,
+  show,
+  create,
+  update // ,
+  // select
 }

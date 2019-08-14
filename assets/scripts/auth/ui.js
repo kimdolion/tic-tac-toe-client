@@ -40,6 +40,7 @@ const signOutSuccess = function () {
   store.user = null
   $('#hide').css('display', 'none')
   $('#hideOnceSignIn').css('display', 'block')
+  $('.box').html('')
 }
 
 const signOutFailure = function (error) {

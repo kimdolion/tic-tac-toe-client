@@ -1,52 +1,48 @@
 'use strict'
+const api = require('./api.js')
+const ui = require('./ui.js')
+const getFormFields = require('../../../lib/get-form-fields.js')
 
-const getFormFields = require(`../../../lib/get-form-fields`)
-
-const api = require('./api')
-const ui = require('./ui')
-
-const onSignUp = function (event) {
-  event.preventDefault()
-
-  const data = getFormFields(this)
-  api.signUp(data)
-    .then(ui.signUpSuccess)
-    .catch(ui.signUpFailure)
+const onGetGames = function () {
+  api.index()
+    .then(ui.onIndexSuccess)
+    .catch(ui.onError)
 }
 
-const onSignIn = function (event) {
+const onGetGame = function (event) {
   event.preventDefault()
-
-  const data = getFormFields(this)
-  api.signIn(data)
-    .then(ui.signInSuccess)
-    .catch(ui.signInFailure)
+  const formData = getFormFields(event.target)
+  api.show(formData)
+    .then(ui.onShowSuccess)
+    .catch(ui.onError)
 }
 
-const onSignOut = function (event) {
+const onUpdateGame = function (event) {
   event.preventDefault()
-
-  api.signOut()
-    .then(ui.signOutSuccess)
-    .catch(ui.signOutFailure)
+  const formData = getFormFields(event.target)
+  api.update(formData)
+    .then(ui.onUpdateSuccess)
+    .catch(ui.onError)
 }
 
-const onChangePassword = function (event) {
+const onCreateGame = function (event) {
   event.preventDefault()
-
-  const data = getFormFields(this)
-  api.changePassword(data)
-    .then(ui.changePasswordSuccess)
-    .catch(ui.changePasswordFailure)
+  const formData = getFormFields(event.target)
+  api.create(formData)
+    .then(ui.onCreateSuccess)
+    .catch(ui.onError)
 }
 
-const addHandlers = () => {
-  $('#sign-up').on('submit', onSignUp)
-  $('#sign-in').on('submit', onSignIn)
-  $('#sign-out').on('submit', onSignOut)
-  $('#change-password').on('submit', onChangePassword)
+const onSelect = function (event) {
+  event.preventDefault()
+  console.log('Clicked!')
+  ui.selectSuccess()
 }
 
 module.exports = {
-  addHandlers
+  onGetGames,
+  onGetGame,
+  onUpdateGame,
+  onCreateGame,
+  onSelect
 }

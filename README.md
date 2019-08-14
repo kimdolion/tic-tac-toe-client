@@ -10,6 +10,8 @@ Began the HTML file with the skeleton of a gameboard using divs with class label
 Started making curl scripts for authentication. Began updating HTML with form inputs for sign-in, sign-up, sign-out, change password, and a button for placeholder button for games.
 
 Began branching to focus features and have better version control going forward.
+Feature2: curl scripts for the game
+Feature3: created gameboard with click event listeners for the individual boxes. Can currently add 'X' to any box that is clicked. Will reset all boxes upon signing out.
 ### Problem-Solving
 
 ### Unsolved Problems
