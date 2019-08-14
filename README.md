@@ -1,7 +1,7 @@
 # Tic-Tac-Toe README
 
 ### Technologies Used
-HTML, CSS, javascript, Boostrap, AJAX,
+HTML, CSS, javascript, Boostrap, AJAX
 
 ### Development Process
 Created a wireframe with general layout of the webpage with a focus on minimal appearance/simple function to keep myself grounded in "not focusing on making it pretty".
@@ -11,7 +11,9 @@ Started making curl scripts for authentication. Began updating HTML with form in
 
 Began branching to focus features and have better version control going forward.
 Feature2: curl scripts for the game
-Feature3: created gameboard with click event listeners for the individual boxes. Can currently add 'X' to any box that is clicked. Will reset all boxes upon signing out.
+Feature3: created gameboard with click event listeners for the gameboard container. Will reset all boxes upon signing out.
+Feature4: win conditions.
+
 ### Problem-Solving
 
 ### Unsolved Problems
