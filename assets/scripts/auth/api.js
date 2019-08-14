@@ -44,5 +44,8 @@ const changePassword = function (data) {
 }
 
 module.exports = {
-  select
+  select,
+  signIn,
+  signOut,
+  changePassword
 }
