@@ -12,6 +12,11 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
+      <header>
+          <ul class="nav justify-content-end">
+            <li class="nav-item"><a class="nav-link active" href="#">Games</a></li>
+          </ul>
+    </header>
     <main>
       <div id="message"></div>
       <div id="hideOnceSignIn">
@@ -34,70 +39,6 @@
         </form>
       </div>
       <div id="hide">
-        <button id="game-button" type="button" class="btn btn-primary btn-sm">Games Button</button>
-        <section id="hideUntilGames">
-          <h3>Get All Games</h3>
-          <button id="games-index">Get All Games</button>
-          <hr>
-          <h3>Get One Game</h3>
-          <form id="game-show">
-            <input required type="number" min="0" name="game[id]" placeholder="Game ID Here">
-            <button type="submit">Get Game</button>
-          </form>
-<<<<<<< HEAD
-          <form id="sign-in" class="border">
-            <fieldset>
-              <legend>Sign In</legend>
-              <input type="text" name="credentials[email]" placeholder="Email@email.com">
-              <input type="password" name="credentials[password]" placeholder="Password">
-              <input type="submit" value="Sign In">
-            </fieldset>
-          </form>
-        </div>
-        <div id="hide">
-          <form id="change-password" class="border">
-            <fieldset>
-              <legend>Change Password</legend>
-              <input type="password" name="passwords[old]" placeholder="Old Password">
-              <input type="password" name="passwords[new]" placeholder="New Password">
-              <input type="submit" value="Change Password">
-            </fieldset>
-          </form>
-          <form id="sign-out" class="border">
-            <fieldset>
-              <legend>Sign Out</legend>
-              <input type="submit" value="Sign Out">
-            </fieldset>
-          </form>
-          <div class="container">
-            <div id="gameboard">
-              <div class="row">
-                <div class="col-4 box"><span class="border-top-0 border-left-0">Box 0</span></div>
-                <div class="col-4 box"><span class="border-top-0">Box 1</span></div>
-                <div class="col-4 box"><span class="border-top-0 border-right-0">Box 2</span></div>
-                <div class="col-4 box"><span class="border-left-0">Box 3</span></div>
-                <div class="col-4 box">Box 4</div>
-                <div class="col-4 box"><span class="border-right-0">Box 5</span></div>
-                <div class="col-4 box"><span class="border-bottom-0 border-left-0">Box 6</span></div>
-                <div class="col-4 box"><span class="border-bottom-0">Box 7</span></div>
-                <div class="col-4 box"><span class="border-top-0">Box 8</span></div>
-              </div>
-            </div>
-=======
-          <hr>
-          <h3>Update One Game</h3>
-          <form id="game-update">
-            <input required type="number" name="game[id]" id="game-id-update" placeholder="Game ID Here">
-              <input required type="text" name="game[title]" placeholder="Game Title Here">
-              <input required type="text" name="game[author]" placeholder="Game Author Here">
-              <button type="submit">Update Game</button>
-            </form>
-            <div id="update-game-message" class="user-feedback"></div>
-          </section>
-          <section>
-            <div id="error-message" class="user-feedback"></div>
-            <div id="game-display"></div>
-          </section>
         <form id="change-password" class="border">
           <fieldset>
             <legend>Change Password</legend>
@@ -112,22 +53,24 @@
             <input type="submit" value="Sign Out">
           </fieldset>
         </form>
-        <div id="gameboard-message"></div>
         <div class="container">
-          <div class="row">
-            <div data-cell-index="0" class="col-4 box"></div>
-            <div data-cell-index="1" class="col-4 box"></div>
-            <div data-cell-index="2" class="col-4 box"></div>
-            <div data-cell-index="3" class="col-4 box"></div>
-            <div data-cell-index="4" class="col-4 box"></div>
-            <div data-cell-index="5" class="col-4 box"></div>
-            <div data-cell-index="6" class="col-4 box"></div>
-            <div data-cell-index="7" class="col-4 box"></div>
-            <div data-cell-index="8" class="col-4 box"></div>
->>>>>>> development
+          <div class="gameboard">
+            <div class="row">
+              <div class="col-4 box"><span class="border-top-0 border-left-0">Box 0</span></div>
+              <div class="col-4 box"><span class="border-top-0">Box 1</span></div>
+              <div class="col-4 box"><span class="border-top-0 border-right-0">Box 2</span></div>
+              <div class="col-4 box"><span class="border-left-0">Box 3</span></div>
+              <div class="col-4 box">Box 4</div>
+              <div class="col-4 box"><span class="border-right-0">Box 5</span></div>
+              <div class="col-4 box"><span class="border-bottom-0 border-left-0">Box 6</span></div>
+              <div class="col-4 box"><span class="border-bottom-0">Box 7</span></div>
+              <div class="col-4 box"><span class="border-top-0">Box 8</span></div>
+            </div>
           </div>
         </div>
       </div>
       </main>
+      <footer>
+      </footer>
   </body>
 </html>
