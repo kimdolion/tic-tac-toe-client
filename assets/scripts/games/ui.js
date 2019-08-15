@@ -56,26 +56,10 @@ const onError = function (err) {
   $('form').trigger('reset')
 }
 
-const onClickSuccessX = function () {
-  $('#gameboard-message').text('Player X took their turn!')
-  $('#gameboard-message').removeClass()
-  $('#gameboard-message').addClass('success')
-  $(event.target).css('background-color', 'coral')
-  console.log('selectSuccess')
-}
-const onClickSuccessO = function () {
-  $('#gameboard-message').text('Player O took their turn!')
-  $('#gameboard-message').removeClass()
-  $('#gameboard-message').addClass('success')
-  $(event.target).css('background-color', 'lightblue')
-  console.log('selectSuccess')
-}
 module.exports = {
   onIndexSuccess,
   onShowSuccess,
   onUpdateSuccess,
   onCreateSuccess,
-  onError,
-  onClickSuccessX,
-  onClickSuccessO
+  onError
 }

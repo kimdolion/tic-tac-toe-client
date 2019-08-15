@@ -41,6 +41,7 @@ const signOutSuccess = function () {
   $('#hide').css('display', 'none')
   $('#hideOnceSignIn').css('display', 'block')
   $('.box').html('')
+  $('.box').css('background-color', 'white')
 }
 
 const signOutFailure = function (error) {

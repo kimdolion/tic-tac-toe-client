@@ -11,11 +11,14 @@ Started making curl scripts for authentication. Began updating HTML with form in
 
 Began branching to focus features and have better version control going forward.
 Feature2: curl scripts for the game
+
 Feature3: created gameboard with click event listeners for the gameboard container. Will reset all boxes upon signing out.
-Feature4: win conditions.
+
+Feature4: added in win conditions.
 
 ### Problem-Solving
-
+Git version control
+  -I had started using my master for my starter code not realizing that is what a branch is for. After many branch mo
 ### Unsolved Problems
 
 ### Wireframes and User Stories
