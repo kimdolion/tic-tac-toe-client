@@ -1,14 +1,13 @@
 'use strict'
 
-// const store = require('../store')
+const store = require('../store')
 
 const onIndexSuccess = function (responseData) {
   console.log(responseData)
   $('#game-display').html('')
   responseData.games.forEach(game => {
     const gameHTML = (`
-      <h4>Game: ${game.title}</h4>
-      <p>Author: ${game.author}</p>
+      <h4>Game: ${game.id}</h4>
       <p>ID: ${game.id}</p>
       <br>
     `)
@@ -19,9 +18,7 @@ const onIndexSuccess = function (responseData) {
 const onShowSuccess = function (responseData) {
   console.log(responseData)
   const gameHTML = (`
-    <h4>Title: ${responseData.game.title}</h4>
-    <p>Author: ${responseData.game.author}</p>
-    <br>
+    <h4>ID: ${responseData.game.id}</h4>
   `)
   $('#game-display').html(gameHTML)
   $('form').trigger('reset')
@@ -29,22 +26,13 @@ const onShowSuccess = function (responseData) {
 
 const onUpdateSuccess = function (responseData) {
   $('#update-game-message').html('You updated the game')
-  $('#game-display').html('Games have changed! Click "Get All Games" again to see all the games.')
-  $('#update-game-message').addClass('success')
-  $('#update-game-message').html('')
-  $('#update-game-message').removeClass('success')
-  $('form').trigger('reset')
+  store.game = responseData.game
 }
 
-const onCreateSuccess = function () {
+const onCreateSuccess = function (responseData) {
   $('#create-game-message').html('You created a new game!')
-  if (!($('#game-display').html() === '')) {
-    $('#game-display').html('Games have changed! Click "Get All Games" again to see all the games.')
-  }
-  $('#create-game-message').addClass('success')
-  $('#create-game-message').html('')
-  $('#create-game-message').removeClass('success')
-  $('form').trigger('reset')
+  store.game = responseData.game
+  console.log(store)
 }
 
 const onError = function (err) {

@@ -3,58 +3,70 @@
 const store = require('../store')
 
 const signUpSuccess = function (data) {
-  $('#message').text('Signed up successfully')
-  $('#message').removeClass()
-  $('#message').addClass('success')
+  $('#message')
+    .text('Signed up successfully')
+    .removeClass()
+    .addClass('success')
   $('form').trigger('reset')
 }
 
 const signUpFailure = function (error) {
-  $('#message').text(error)
-  $('#message').removeClass()
-  $('#message').addClass('failure')
+  $('#message')
+    .text(error)
+    .removeClass()
+    .addClass('failure')
   $('form').trigger('reset')
 }
 
 const signInSuccess = function (data) {
-  $('#message').text('Signed in successfully')
-  $('#message').removeClass()
-  $('#message').addClass('success')
+  $('#message')
+    .text('Signed in successfully')
+    .removeClass()
+    .addClass('success')
+  console.log(data)
   store.user = data.user
   $('#hideOnceSignIn').css('display', 'none')
   $('#hide').css('display', 'block')
 }
 
 const signInFailure = function (error) {
-  $('#message').text(error)
-  $('#message').removeClass()
-  $('#message').addClass('failure')
+  $('#message')
+    .text(error)
+    .removeClass()
+    .addClass('failure')
   $('form').trigger('reset')
 }
 
 const signOutSuccess = function () {
-  $('#message').text('Signed out successfully')
-  $('#message').removeClass()
-  $('#message').addClass('success')
+  $('#message')
+    .text('Signed out successfully')
+    .removeClass()
+    .addClass('success')
   $('form').trigger('reset')
   store.user = null
   $('#hide').css('display', 'none')
   $('#hideOnceSignIn').css('display', 'block')
-  $('.box').html('')
-  $('.box').css('background-color', 'white')
+  $('.box')
+    .html('')
+    .css('background-color', 'white')
+  $('#gameboard-message')
+    .html('')
+    .css('background-color', 'white')
 }
 
 const signOutFailure = function (error) {
-  $('#message').text(error)
-  $('#message').removeClass()
-  $('#message').addClass('failure')
+  $('#message')
+    .text(error)
+    .removeClass()
+    .addClass('failure')
 }
 
 const changePasswordSuccess = function () {
   $('.hide').css('display', 'block')
-  $('#message').text('Changed password successfully')
-  $('#message').removeClass()
-  $('#message').addClass('success')
+  $('#message')
+    .text('Changed password successfully')
+    .removeClass()
+    .addClass('success')
   $('form').trigger('reset')
   $('#hide').css('display', 'block')
   $('#hideOnceSignIn').css('display', 'block')
@@ -62,9 +74,9 @@ const changePasswordSuccess = function () {
 
 const changePasswordFailure = function (error) {
   $('#message').text(error)
-  $('#message').removeClass()
-  $('#message').addClass('failure')
-  $('form').trigger('reset')
+    .removeClass()
+    .addClass('failure')
+    .trigger('reset')
 }
 
 module.exports = {
