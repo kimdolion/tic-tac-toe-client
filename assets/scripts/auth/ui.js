@@ -8,6 +8,12 @@ const signUpSuccess = function (data) {
     .removeClass()
     .addClass('success')
   $('form').trigger('reset')
+  setTimeout(() => {
+    $('#message')
+      .text('')
+      .css('background-color', 'white')
+      .removeClass('success')
+  }, 3000)
 }
 
 const signUpFailure = function (error) {
@@ -23,6 +29,12 @@ const signInSuccess = function (data) {
     .text('Signed in successfully')
     .removeClass()
     .addClass('success')
+  setTimeout(() => {
+    $('#message')
+      .text('')
+      .css('background-color', 'white')
+      .removeClass('success')
+  }, 3000)
   console.log(data)
   store.user = data.user
   $('#hideOnceSignIn').css('display', 'none')
@@ -53,6 +65,12 @@ const signOutSuccess = function () {
   $('#gameboard-message')
     .html('')
     .css('background-color', 'white')
+  setTimeout(() => {
+    $('#message')
+      .text('')
+      .css('background-color', 'white')
+      .removeClass('success')
+  }, 3000)
 }
 
 const signOutFailure = function (error) {

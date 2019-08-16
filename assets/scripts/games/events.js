@@ -20,7 +20,6 @@ const onBoxClick = function (event) {
   if ($(event.target).text() === '' && store.gameOver === false) {
     if (store.currentPlayer === store.player1) {
       store.gameboard[$(event.target).data('cell-index')] = 'X'
-      checkForWinner()
       $(event.target)
         .css('background-color', 'coral') // changes div bg to coral
         .text('X')
@@ -28,9 +27,9 @@ const onBoxClick = function (event) {
       api.updateGame(id)
         .then(ui.onClickforXSuccess)
         .catch(ui.onError)
+      checkForWinner()
     } else if (store.currentPlayer === store.player2) {
       store.gameboard[$(event.target).data('cell-index')] = 'O'
-      checkForWinner()
       $(event.target)
         .css('background-color', 'lightblue') // changes div bg to lightblue
         .text('O') // fills empty space with O
@@ -38,11 +37,12 @@ const onBoxClick = function (event) {
       api.updateGame(id)
         .then(ui.onClickforOSuccess)
         .catch(ui.onError)
+      checkForWinner()
     }
-  } else if ($(event.target).text() !== '' && store.gameOver === false) {
-    $('gameboard-message').text('You must click an empty square!')
+  } else if (store.gameboard[$(event.target).text()] !== '' && store.gameOver === false) {
+    $('#gameboard-message').text('You must click an empty square!')
   } else if (store.gameOver === true) {
-    $('gameboard-message').text('Time to start a new game!')
+    $('#gameboard-message').text('Time to start a new game!')
   }
 }
 
@@ -140,20 +140,20 @@ const checkForWinner = () => {
     (store.gameboard[2] === 'X' && store.gameboard[4] === 'X' && store.gameboard[6] === 'X')
   ) {
     console.log('Player X wins!')
-    $('gameboard-message').text('Player X wins!')
+    $('#gameboard-message').text('Player X wins! Time to start a new game!')
     store.gameOver = true
   } else if (
     (store.gameboard[0] === 'O' && store.gameboard[1] === 'O' && store.gameboard[2] === 'O') ||
-  (store.gameboard[3] === 'O' && store.gameboard[4] === 'O' && store.gameboard[5] === 'O') ||
-  (store.gameboard[6] === 'O' && store.gameboard[7] === 'O' && store.gameboard[8] === 'O') ||
-  (store.gameboard[0] === 'O' && store.gameboard[3] === 'O' && store.gameboard[6] === 'O') ||
-  (store.gameboard[1] === 'O' && store.gameboard[4] === 'O' && store.gameboard[7] === 'O') ||
-  (store.gameboard[2] === 'O' && store.gameboard[5] === 'O' && store.gameboard[8] === 'O') ||
-  (store.gameboard[0] === 'O' && store.gameboard[4] === 'O' && store.gameboard[8] === 'O') ||
-  (store.gameboard[2] === 'O' && store.gameboard[4] === 'O' && store.gameboard[6] === 'O')
+    (store.gameboard[3] === 'O' && store.gameboard[4] === 'O' && store.gameboard[5] === 'O') ||
+    (store.gameboard[6] === 'O' && store.gameboard[7] === 'O' && store.gameboard[8] === 'O') ||
+    (store.gameboard[0] === 'O' && store.gameboard[3] === 'O' && store.gameboard[6] === 'O') ||
+    (store.gameboard[1] === 'O' && store.gameboard[4] === 'O' && store.gameboard[7] === 'O') ||
+    (store.gameboard[2] === 'O' && store.gameboard[5] === 'O' && store.gameboard[8] === 'O') ||
+    (store.gameboard[0] === 'O' && store.gameboard[4] === 'O' && store.gameboard[8] === 'O') ||
+    (store.gameboard[2] === 'O' && store.gameboard[4] === 'O' && store.gameboard[6] === 'O')
   ) {
     console.log('Player O wins!')
-    $('#gameboard-message').text('Player O wins!')
+    $('#gameboard-message').text('Player O wins! Time to start a new game!')
     store.gameOver = true
   } else if (
     (store.gameboard[0] !== '' && store.gameboard[1] !== '' && store.gameboard[2] !== '' &&
@@ -161,8 +161,8 @@ const checkForWinner = () => {
     store.gameboard[6] !== '' && store.gameboard[7] !== '' && store.gameboard[8] !== '')
   ) {
     console.log('Tie game')
-    $('#gameboard-message').text('Tie Game!')
     store.gameOver = true
+    $('#gameboard-message').text('Tie Game! Time to start a new game!')
   }
 }
 
@@ -240,9 +240,8 @@ const onGetGames = function () {
 
 const onGetGamesLength = function () {
   const data = getFormFields(event.target)
-  console.log('games length is', onGetGamesLength)
   api.indexGames(data.game)
-    .then(ui.onIndexLengthSuccess)
+    .then(ui.onGetGamesSuccess)
     .catch(ui.onError)
 }
 
@@ -276,7 +275,7 @@ const addHandlers = () => {
   $('#create-game').on('click', onCreateGame)
   // $('.box').on('click', onSwitchPlayer)
   $('.box').on('click', onBoxClick)
-  $('games-played').on('submit', onGetGamesLength)
+  $('#games-played').on('click', onGetGamesLength)
 }
 
 module.exports = {

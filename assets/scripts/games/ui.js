@@ -15,12 +15,17 @@ const onIndexSuccess = function (responseData) {
   })
 }
 
-const onIndexLengthSuccess = function (responseData) {
-  console.log(responseData)
-  $('#games-length').html('')
-  responseData.games.forEach(game => {
-    return game.length
-  })
+const onGetGamesSuccess = responseData => {
+  if (responseData.games.length > 0) {
+    const lengthGames = responseData.games.length
+    $('#games-length')
+      .text(`You've Played ${lengthGames} Games!`)
+    setTimeout(() => {
+      $('#games-length')
+        .text('')
+    }, 5000)
+    console.log(lengthGames)
+  } console.log(responseData.games.length)
 }
 
 const onShowSuccess = function (responseData) {
@@ -78,7 +83,7 @@ const onError = function (err) {
     .text('Something went wrong, please try again.')
     .addClass('failure')
   setTimeout(() => {
-    $('#gameboard-message')
+    $('#error-message')
       .text('')
       .css('background-color', 'white')
       .removeClass('failure')
@@ -87,7 +92,7 @@ const onError = function (err) {
 
 module.exports = {
   onIndexSuccess,
-  onIndexLengthSuccess,
+  onGetGamesSuccess,
   onShowSuccess,
   onUpdateSuccess,
   onCreateSuccess,

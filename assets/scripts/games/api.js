@@ -11,11 +11,7 @@ const indexGames = function () {
     headers: {
       Authorization: 'Token token=' + store.user.token
     },
-    data: {
-      id: '',
-      cell: [],
-      over: ''
-    }
+    data: {}
   })
 }
 
