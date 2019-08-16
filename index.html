@@ -53,10 +53,6 @@
             </form>
             <div id="update-game-message" class="user-feedback"></div>
           </section>
-          <section>
-            <div id="error-message" class="user-feedback"></div>
-            <div id="game-display"></div>
-          </section>
         <form id="change-password" class="border">
           <fieldset>
             <legend>Change Password</legend>
@@ -75,7 +71,13 @@
           <button id="create-game" type="button" class="btn btn-primary justify-content-center btn-lg">New Game</button>
           <button id="display-games-info" type="button" class="btn btn-secondary d-flex justify-content-end btn-lg">Display Games Info.</button>
         </div>
+      </div>
+      <div id="hideUntilNewGame">
         <div id="gameboard-message"></div>
+        <section>
+          <div id="error-message" class="user-feedback"></div>
+          <div id="game-display"></div>
+        </section>
         <div class="container">
           <div class="row">
             <div data-cell-index="0" class="col-4 border-left-0 border-top-0 box"></div>
@@ -88,6 +90,9 @@
             <div data-cell-index="7" class="col-4 border-bottom-0 box"></div>
             <div data-cell-index="8" class="col-4 border-right-0 border-bottom-0 box"></div>
           </div>
+          <br>
+          <button id="games-played" type="submit" class="btn btn-primary justify-content-center btn-lg">Games Played</button>
+          <div id='games-length'></div>
         </div>
       </div>
       </main>

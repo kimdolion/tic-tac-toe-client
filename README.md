@@ -14,11 +14,13 @@ Feature2: curl scripts for the game
 
 Feature3: created gameboard with click event listeners for the gameboard container. Will reset all boxes upon signing out.
 
-Feature4: added in win conditions.
+Feature4: added in win conditions, new game button, and display games button. buttons and game board are hidden until successful sign in.
+-hit roadblock; rewrote on paper what the click expectations were, 
 
 ### Problem-Solving
 Git version control
   -I had started using my master for my starter code not realizing that is what a branch is for. After many branch mo
+
 ### Unsolved Problems
 
 ### Wireframes and User Stories

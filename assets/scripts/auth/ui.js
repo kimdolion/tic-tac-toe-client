@@ -45,6 +45,7 @@ const signOutSuccess = function () {
   $('form').trigger('reset')
   store.user = null
   $('#hide').css('display', 'none')
+  $('#hideUntilNewGame').css('display', 'none')
   $('#hideOnceSignIn').css('display', 'block')
   $('.box')
     .html('')

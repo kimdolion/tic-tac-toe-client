@@ -15,6 +15,14 @@ const onIndexSuccess = function (responseData) {
   })
 }
 
+const onIndexLengthSuccess = function (responseData) {
+  console.log(responseData)
+  $('#games-length').html('')
+  responseData.games.forEach(game => {
+    return game.length
+  })
+}
+
 const onShowSuccess = function (responseData) {
   const gameHTML = (`
     <h4>ID: ${responseData.game.id}</h4>
@@ -24,23 +32,27 @@ const onShowSuccess = function (responseData) {
 }
 
 const onUpdateSuccess = function (responseData) {
-  $('#gameboard-message').text('You updated the game')
   store.game = responseData.game
 }
 
 const onCreateSuccess = function (responseData) {
-  store.currentPlayer = 'X'
-  store.gameOver = false
-  $('#gameboard-message')
-    .css('color', 'blue')
-    .text('You created a new game!')
+  $('#hideUntilNewGame')
+    .css('display', 'block')
+  store.game = responseData.game
+  store.gameboard = [
+    '', '', '',
+    '', '', '',
+    '', '', ''
+  ]
   $('.box')
     .css('background-color', 'white')
     .text('')
   $('#gameboard-message')
     .css('background-color', 'white')
     .text('')
-  store.game = responseData.game
+  store.currentPlayer = store.player1
+  store.gameOver = false
+  console.log(store.game)
 }
 
 const onClickforXSuccess = function (responseData) {
@@ -48,35 +60,38 @@ const onClickforXSuccess = function (responseData) {
     .css('color', 'black')
     .css('background-color', 'coral')
     .text('X took a turn! Now it\'s O\'s')
+  store.currentPlayer = store.player2
+  store.game = responseData.game
 }
 const onClickforOSuccess = function (responseData) {
   $('#gameboard-message')
     .css('color', 'black')
     .css('background-color', 'lightblue')
     .text('O took a turn! Now it\'s X\'s')
-}
-
-const winSuccess = function (responseData) {
-  $('#gameboard-message')
-    .text('Win!')
+  store.currentPlayer = store.player1
+  store.game = responseData.game
 }
 
 const onError = function (err) {
   console.error(err)
-  $('#error-message').text('Something went wrong, please try again.')
-  $('#error-message').addClass('failure')
-  $('#error-message').html('')
-  $('#error-message').removeClass('failure')
-  $('form').trigger('reset')
+  $('#gameboard-message')
+    .text('Something went wrong, please try again.')
+    .addClass('failure')
+  setTimeout(() => {
+    $('#gameboard-message')
+      .text('')
+      .css('background-color', 'white')
+      .removeClass('failure')
+  }, 3000)
 }
 
 module.exports = {
   onIndexSuccess,
+  onIndexLengthSuccess,
   onShowSuccess,
   onUpdateSuccess,
   onCreateSuccess,
   onClickforXSuccess,
   onClickforOSuccess,
-  winSuccess,
   onError
 }

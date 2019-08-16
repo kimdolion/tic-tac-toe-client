@@ -1,180 +1,282 @@
 'use strict'
+
 const api = require('./api.js')
 const ui = require('./ui.js')
+const store = require('../store')
 const getFormFields = require('../../../lib/get-form-fields.js')
 
-const gameboard = [
+store.gameboard = [
   '', '', '',
   '', '', '',
   '', '', ''
 ]
 
-const player1 = 'X'
-const player2 = 'O'
-let currentPlayer = player1
-console.log(currentPlayer)
-// let gameOver = false
+store.player1 = 'X'
+store.player2 = 'O'
+store.currentPlayer = store.player1
+store.gameOver = false
+
+const onBoxClick = function (event) {
+  if ($(event.target).text() === '' && store.gameOver === false) {
+    if (store.currentPlayer === store.player1) {
+      store.gameboard[$(event.target).data('cell-index')] = 'X'
+      checkForWinner()
+      $(event.target)
+        .css('background-color', 'coral') // changes div bg to coral
+        .text('X')
+      const id = store.game.id
+      api.updateGame(id)
+        .then(ui.onClickforXSuccess)
+        .catch(ui.onError)
+    } else if (store.currentPlayer === store.player2) {
+      store.gameboard[$(event.target).data('cell-index')] = 'O'
+      checkForWinner()
+      $(event.target)
+        .css('background-color', 'lightblue') // changes div bg to lightblue
+        .text('O') // fills empty space with O
+      const id = store.game.id
+      api.updateGame(id)
+        .then(ui.onClickforOSuccess)
+        .catch(ui.onError)
+    }
+  } else if ($(event.target).text() !== '' && store.gameOver === false) {
+    $('gameboard-message').text('You must click an empty square!')
+  } else if (store.gameOver === true) {
+    $('gameboard-message').text('Time to start a new game!')
+  }
+}
 
 /*
-const winConditions = [
-  ['0, 1, 2'],
-  ['3, 4, 5'],
-  ['6, 7, 8'],
-  ['0, 3, 6'],
-  ['1, 4, 7'],
-  ['2, 5, 8'],
-  ['2, 4, 6'],
-  ['0, 4, 8']
-]
-*/
+const onBoxClick = function (event) {
+  if ($(event.target).text() === '' && store.gameOver === false) {
+    if (store.currentPlayer === store.player1) {
+      gameboard[$(event.target).data('cell-index')] = 'X'
+      $(event.target)
+        .css('background-color', 'coral') // changes div bg to coral
+        .text('X')
+      api.updateGame()
+        .then(ui.onClickforXSuccess)
+        .catch(ui.onError)
+    }
+  } else if (store.currentPlayer === store.player2) {
+    gameboard[$(event.target).data('cell-index')] = 'O'
+    $(event.target)
+      .css('background-color', 'lightblue') // changes div bg to lightblue
+      .text('O') // fills empty space with O
+    const data = getFormFields(event.target)
+    api.updateGame(data.game)
+      .then(ui.onClickforOSuccess)
+      .catch(ui.onError)
+  }
+  checkForWinner()
+}
+/*
 const onClickforX = function (event) {
-  if ($(event.target).text() === '') {
-    console.log('Clicked!')
-    $(event.target).text('X') // fills empty space in div with X
+  if ($(event.target).text() === '' && store.gameOver === false) {
     gameboard[$(event.target).data('cell-index')] = 'X'
+    $(event.target)
+      .css('background-color', 'coral') // changes div bg to coral
+      .text('X')
     checkForWinner()
-    // api call
-    currentPlayer = player2 // switches current player to O
-    $('#gameboard-message')
-      .text('X took a turn! Now it\'s O\'s')
-      .removeClass()
-      .addClass('success')
-    $(event.target).css('background-color', 'coral')
-    console.log('selectSuccessX')
+    // api call update vs create?
+    const data = getFormFields(event.target)
+    api.updateGame(data.game.id)
+      .then(ui.onClickforXSuccess)
+      .catch(ui.onError)
   }
 }
 
 const onClickforO = function (event) {
-  if ($(event.target).text() === '') {
-    $(event.target).text('O') // fills empty space with O
+  if ($(event.target).text() === '' && store.gameOver === false) {
     gameboard[$(event.target).data('cell-index')] = 'O'
+    $(event.target)
+      .css('background-color', 'lightblue')
+      .text('O') // fills empty space with O
     checkForWinner()
     // api call
-    currentPlayer = player1 // switches current player to X
-    $('#gameboard-message')
-      .text('O took a turn! Now it\'s X\'s')
-      .removeClass()
-      .addClass('success')
-    $(event.target).css('background-color', 'lightblue')
-    console.log('selectSuccessO')
+    const data = getFormFields(event.target)
+    api.updateGame(data.game.id)
+      .then(ui.onClickforOSuccess)
+      .catch(ui.onError)
   }
 }
 
 const onSwitchPlayer = (event) => {
-  if (currentPlayer === 'X') {
+  if (store.currentPlayer === 'X') {
     onClickforX(event)
-  } else if (currentPlayer === 'O') {
+    store.currentPlayer = store.player2
+  } else if (store.currentPlayer === 'O') {
     onClickforO(event)
-  } console.log('currentPlayer is', currentPlayer)
+    store.currentPlayer = store.player1
+  } console.log('currentPlayer is', store.currentPlayer)
 }
 
+const isGameOver = () => {
+  if (checkForWinner() === true) {
+    store.gameOver = true
+    store.currentPlayer = store.player1
+    // $('.box').off('click', onSwitchPlayer)
+  } else {
+    store.gameOver = false
+    if (store.currentPlayer === store.player1) {
+      store.currentPlayer = store.player2
+    } else {
+      store.currentPlayer = store.player1
+    }
+    // $('.box').on('click', onSwitchPlayer)
+  }
+}
+*/
+const checkForWinner = () => {
+  // check for X win
+  if (
+    (store.gameboard[0] === 'X' && store.gameboard[1] === 'X' && store.gameboard[2] === 'X') ||
+    (store.gameboard[3] === 'X' && store.gameboard[4] === 'X' && store.gameboard[5] === 'X') ||
+    (store.gameboard[6] === 'X' && store.gameboard[7] === 'X' && store.gameboard[8] === 'X') ||
+    (store.gameboard[0] === 'X' && store.gameboard[3] === 'X' && store.gameboard[6] === 'X') ||
+    (store.gameboard[1] === 'X' && store.gameboard[4] === 'X' && store.gameboard[7] === 'X') ||
+    (store.gameboard[2] === 'X' && store.gameboard[5] === 'X' && store.gameboard[8] === 'X') ||
+    (store.gameboard[0] === 'X' && store.gameboard[4] === 'X' && store.gameboard[8] === 'X') ||
+    (store.gameboard[2] === 'X' && store.gameboard[4] === 'X' && store.gameboard[6] === 'X')
+  ) {
+    console.log('Player X wins!')
+    $('gameboard-message').text('Player X wins!')
+    store.gameOver = true
+  } else if (
+    (store.gameboard[0] === 'O' && store.gameboard[1] === 'O' && store.gameboard[2] === 'O') ||
+  (store.gameboard[3] === 'O' && store.gameboard[4] === 'O' && store.gameboard[5] === 'O') ||
+  (store.gameboard[6] === 'O' && store.gameboard[7] === 'O' && store.gameboard[8] === 'O') ||
+  (store.gameboard[0] === 'O' && store.gameboard[3] === 'O' && store.gameboard[6] === 'O') ||
+  (store.gameboard[1] === 'O' && store.gameboard[4] === 'O' && store.gameboard[7] === 'O') ||
+  (store.gameboard[2] === 'O' && store.gameboard[5] === 'O' && store.gameboard[8] === 'O') ||
+  (store.gameboard[0] === 'O' && store.gameboard[4] === 'O' && store.gameboard[8] === 'O') ||
+  (store.gameboard[2] === 'O' && store.gameboard[4] === 'O' && store.gameboard[6] === 'O')
+  ) {
+    console.log('Player O wins!')
+    $('#gameboard-message').text('Player O wins!')
+    store.gameOver = true
+  } else if (
+    (store.gameboard[0] !== '' && store.gameboard[1] !== '' && store.gameboard[2] !== '' &&
+    store.gameboard[3] !== '' && store.gameboard[4] !== '' && store.gameboard[5] !== '' &&
+    store.gameboard[6] !== '' && store.gameboard[7] !== '' && store.gameboard[8] !== '')
+  ) {
+    console.log('Tie game')
+    $('#gameboard-message').text('Tie Game!')
+    store.gameOver = true
+  }
+}
+
+/*
 const checkForWinner = () => {
   if ( // 1st row win
     (gameboard[0] === 'X' && gameboard[1] === 'X' && gameboard[2] === 'X') ||
     (gameboard[0] === 'O' && gameboard[1] === 'O' && gameboard[2] === 'O')
   ) {
     console.log('Winner!')
-    return $('#gameboard-message').text('Winner')
+    $('#gameboard-message').text('Winner')
+    store.gameOver = true
   } else if ( // 2nd row win
     (gameboard[3] === 'X' && gameboard[4] === 'X' && gameboard[5] === 'X') ||
     (gameboard[3] === 'O' && gameboard[4] === 'O' && gameboard[5] === 'O')
   ) {
     console.log('Winner!')
-    return $('#gameboard-message').text('Winner')
+    $('#gameboard-message').text('Winner')
+    store.gameOver = true
   } else if ( // 3rd row win
     (gameboard[6] === 'X' && gameboard[7] === 'X' && gameboard[8] === 'X') ||
     (gameboard[6] === 'O' && gameboard[7] === 'O' && gameboard[8] === 'O')
   ) {
     console.log('Winner!')
-    return $('#gameboard-message').text('Winner')
+    $('#gameboard-message').text('Winner')
+    store.gameOver = true
   } else if ( // 1st column win
     (gameboard[0] === 'X' && gameboard[3] === 'X' && gameboard[6] === 'X') ||
     (gameboard[0] === 'O' && gameboard[3] === 'O' && gameboard[6] === 'O')
   ) {
     console.log('Winner!')
-    return $('#gameboard-message').text('Winner')
+    $('#gameboard-message').text('Winner')
+    store.gameOver = true
   } else if ( // 2nd column win
     (gameboard[1] === 'X' && gameboard[4] === 'X' && gameboard[7] === 'X') ||
     (gameboard[1] === 'O' && gameboard[4] === 'O' && gameboard[7] === 'O')
   ) {
     console.log('Winner!')
-    return $('#gameboard-message').text('Winner')
+    $('#gameboard-message').text('Winner')
+    store.gameOver = true
   } else if ( // 3rd column win
     (gameboard[2] === 'X' && gameboard[5] === 'X' && gameboard[8] === 'X') ||
     (gameboard[2] === 'O' && gameboard[5] === 'O' && gameboard[8] === 'O')
   ) {
     console.log('Winner!')
-    return $('#gameboard-message').text('Winner')
+    $('#gameboard-message').text('Winner')
+    store.gameOver = true
   } else if ( // diagonal win from top left
     (gameboard[0] === 'X' && gameboard[4] === 'X' && gameboard[8] === 'X') ||
     (gameboard[0] === 'O' && gameboard[4] === 'O' && gameboard[8] === 'O')
   ) {
     console.log('Winner!')
-    return $('#gameboard-message').text('Win')
+    $('#gameboard-message').text('Winner')
+    store.gameOver = true
   } else if ( // diagonal win from top right
     (gameboard[2] === 'X' && gameboard[4] === 'X' && gameboard[6] === 'X') ||
     (gameboard[2] === 'O' && gameboard[4] === 'O' && gameboard[6] === 'O')
   ) {
-    return $('#gameboard-message').text('Win')
+    $('#gameboard-message').text('Winner')
+    store.gameOver = true
   } else if (!(gameboard.includes(''))) {
     console.log('Tie! No winner!')
+  } else {
+    console.log(store.gameOver)
+    store.gameOver = false
   }
 }
-
+*/
 const onGetGames = function () {
-  api.indexGames()
+  const data = getFormFields(event.target)
+  api.indexGames(data.game)
     .then(ui.onIndexSuccess)
+    .catch(ui.onError)
+}
+
+const onGetGamesLength = function () {
+  const data = getFormFields(event.target)
+  console.log('games length is', onGetGamesLength)
+  api.indexGames(data.game)
+    .then(ui.onIndexLengthSuccess)
     .catch(ui.onError)
 }
 
 const onShowGame = function (event) {
   event.preventDefault()
-  const formData = getFormFields(event.target)
-  api.showGame(formData)
+  const data = getFormFields(event.target)
+  api.showGame(data.game.id)
     .then(ui.onShowSuccess)
     .catch(ui.onError)
 }
-
+/*
 const onUpdateGame = function (event) {
   event.preventDefault()
-  const formData = getFormFields(event.target)
-  api.updateGame(formData)
+  const data = getFormFields(event.target)
+  api.updateGame(data.game.id)
     .then(ui.onUpdateSuccess)
     .catch(ui.onError)
 }
-
+*/
 const onCreateGame = function (event) {
   event.preventDefault()
-  api.createGame()
+  const data = getFormFields(event.target)
+  api.createGame(data.game)
     .then(ui.onCreateSuccess)
-    /*
-    .then(() => {
-      currentPlayer = 'X'
-      $('.box')
-        .text('')
-        .css('background-color', 'white')
-      $('#gameboard-message')
-        .text('')
-        .css('background-color', 'white')
-    }) */
     .catch(ui.onError)
 }
-/*
-const onGameDisplay = function (event) {
-  $('.container').css('display', 'none')
-  $('#hideUntilGames').css('display', 'block')
-  $('message')
-    .text('')
-    .css('background-color', 'white')
-}
-*/
+
 const addHandlers = () => {
   $('games-index').on('submit', onGetGames)
   $('game-show').on('submit', onShowGame)
-  $('game-update').on('submit', onUpdateGame)
   $('#create-game').on('click', onCreateGame)
-  $('.box').on('click', onSwitchPlayer)
-  // $('#display-games-info').on('click', onGameDisplay)
+  // $('.box').on('click', onSwitchPlayer)
+  $('.box').on('click', onBoxClick)
+  $('games-played').on('submit', onGetGamesLength)
 }
 
 module.exports = {
