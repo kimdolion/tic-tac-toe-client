@@ -16,7 +16,6 @@ const onIndexSuccess = function (responseData) {
 }
 
 const onShowSuccess = function (responseData) {
-  console.log(responseData)
   const gameHTML = (`
     <h4>ID: ${responseData.game.id}</h4>
   `)
@@ -25,19 +24,46 @@ const onShowSuccess = function (responseData) {
 }
 
 const onUpdateSuccess = function (responseData) {
-  $('#update-game-message').html('You updated the game')
+  $('#gameboard-message').text('You updated the game')
   store.game = responseData.game
 }
 
 const onCreateSuccess = function (responseData) {
-  $('#create-game-message').html('You created a new game!')
+  store.currentPlayer = 'X'
+  store.gameOver = false
+  $('#gameboard-message')
+    .css('color', 'blue')
+    .text('You created a new game!')
+  $('.box')
+    .css('background-color', 'white')
+    .text('')
+  $('#gameboard-message')
+    .css('background-color', 'white')
+    .text('')
   store.game = responseData.game
-  console.log(store)
+}
+
+const onClickforXSuccess = function (responseData) {
+  $('#gameboard-message')
+    .css('color', 'black')
+    .css('background-color', 'coral')
+    .text('X took a turn! Now it\'s O\'s')
+}
+const onClickforOSuccess = function (responseData) {
+  $('#gameboard-message')
+    .css('color', 'black')
+    .css('background-color', 'lightblue')
+    .text('O took a turn! Now it\'s X\'s')
+}
+
+const winSuccess = function (responseData) {
+  $('#gameboard-message')
+    .text('Win!')
 }
 
 const onError = function (err) {
   console.error(err)
-  $('#error-message').html('Something went wrong, please try again.')
+  $('#error-message').text('Something went wrong, please try again.')
   $('#error-message').addClass('failure')
   $('#error-message').html('')
   $('#error-message').removeClass('failure')
@@ -49,5 +75,8 @@ module.exports = {
   onShowSuccess,
   onUpdateSuccess,
   onCreateSuccess,
+  onClickforXSuccess,
+  onClickforOSuccess,
+  winSuccess,
   onError
 }

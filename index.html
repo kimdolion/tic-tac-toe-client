@@ -12,11 +12,6 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <header>
-          <ul class="nav justify-content-end">
-            <li class="nav-item"><a class="nav-link active" href="#">Games</a></li>
-          </ul>
-    </header>
     <main>
       <div id="message"></div>
       <div id="hideOnceSignIn">
@@ -39,18 +34,17 @@
         </form>
       </div>
       <div id="hide">
-        <button id="game-button" type="button" class="btn btn-primary btn-sm">New Game</button>
         <section id="hideUntilGames">
-          <h3>Get All Games</h3>
+          <legend>Get All Games</legend>
           <button id="games-index">Get All Games</button>
           <hr>
-          <h3>Get One Game</h3>
+          <legend>Show One Game</legend>
           <form id="game-show">
             <input required type="number" min="0" name="game[id]" placeholder="Game ID Here">
-            <button type="submit">Get Game</button>
+            <button type="submit">Show A Game</button>
           </form>
           <hr>
-          <h3>Update One Game</h3>
+          <legend>Update One Game</legend>
           <form id="game-update">
             <input required type="number" name="game[id]" id="game-id-update" placeholder="Game ID Here">
               <input required type="text" name="game[title]" placeholder="Game Title Here">
@@ -77,6 +71,10 @@
             <input type="submit" value="Sign Out">
           </fieldset>
         </form>
+        <div id='all-of-the-buttons'>
+          <button id="create-game" type="button" class="btn btn-primary justify-content-center btn-lg">New Game</button>
+          <button id="display-games-info" type="button" class="btn btn-secondary d-flex justify-content-end btn-lg">Display Games Info.</button>
+        </div>
         <div id="gameboard-message"></div>
         <div class="container">
           <div class="row">
