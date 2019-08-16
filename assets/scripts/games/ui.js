@@ -57,6 +57,7 @@ const onCreateSuccess = function (responseData) {
     .text('')
   store.currentPlayer = store.player1
   store.gameOver = false
+  store.winner = ''
   console.log(store.game)
 }
 
@@ -64,7 +65,11 @@ const onClickforXSuccess = function (responseData) {
   $('#gameboard-message')
     .css('color', 'black')
     .css('background-color', 'coral')
-    .text('X took a turn! Now it\'s O\'s')
+  if (store.winner === '') {
+    $('#gameboard-message').text('X took a turn! Now it\'s O\'s')
+  } else {
+    $('#gameboard-message').text(store.winner)
+  }
   store.currentPlayer = store.player2
   store.game = responseData.game
 }
@@ -72,7 +77,11 @@ const onClickforOSuccess = function (responseData) {
   $('#gameboard-message')
     .css('color', 'black')
     .css('background-color', 'lightblue')
-    .text('O took a turn! Now it\'s X\'s')
+  if (store.winner === '') {
+    $('#gameboard-message').text('O took a turn! Now it\'s X\'s')
+  } else {
+    $('#gameboard-message').text(store.winner)
+  }
   store.currentPlayer = store.player1
   store.game = responseData.game
 }

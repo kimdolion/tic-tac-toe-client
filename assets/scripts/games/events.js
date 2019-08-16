@@ -23,8 +23,8 @@ const onBoxClick = function (event) {
       $(event.target)
         .css('background-color', 'coral') // changes div bg to coral
         .text('X')
-      const id = store.game.id
-      api.updateGame(id)
+      const index = $(event.target).data('cell-index')
+      api.updateGame('X', index, store.gameOver)
         .then(ui.onClickforXSuccess)
         .catch(ui.onError)
       checkForWinner()
@@ -33,8 +33,8 @@ const onBoxClick = function (event) {
       $(event.target)
         .css('background-color', 'lightblue') // changes div bg to lightblue
         .text('O') // fills empty space with O
-      const id = store.game.id
-      api.updateGame(id)
+      const index = $(event.target).data('cell-index')
+      api.updateGame('O', index, store.gameOver)
         .then(ui.onClickforOSuccess)
         .catch(ui.onError)
       checkForWinner()
@@ -140,7 +140,7 @@ const checkForWinner = () => {
     (store.gameboard[2] === 'X' && store.gameboard[4] === 'X' && store.gameboard[6] === 'X')
   ) {
     console.log('Player X wins!')
-    $('#gameboard-message').text('Player X wins! Time to start a new game!')
+    store.winner = 'Player X wins!'
     store.gameOver = true
   } else if (
     (store.gameboard[0] === 'O' && store.gameboard[1] === 'O' && store.gameboard[2] === 'O') ||
@@ -153,7 +153,7 @@ const checkForWinner = () => {
     (store.gameboard[2] === 'O' && store.gameboard[4] === 'O' && store.gameboard[6] === 'O')
   ) {
     console.log('Player O wins!')
-    $('#gameboard-message').text('Player O wins! Time to start a new game!')
+    store.winner = 'Player O wins!'
     store.gameOver = true
   } else if (
     (store.gameboard[0] !== '' && store.gameboard[1] !== '' && store.gameboard[2] !== '' &&
@@ -162,7 +162,7 @@ const checkForWinner = () => {
   ) {
     console.log('Tie game')
     store.gameOver = true
-    $('#gameboard-message').text('Tie Game! Time to start a new game!')
+    store.winner = 'Tie Game! Time to start a new game!'
   }
 }
 
