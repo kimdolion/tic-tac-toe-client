@@ -21,6 +21,7 @@ const signUpFailure = function () {
     .text('Error on sign up')
     .removeClass()
     .addClass('failure')
+  $('form').trigger('reset')
 }
 
 const signInSuccess = function (data) {
