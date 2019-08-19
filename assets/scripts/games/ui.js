@@ -3,7 +3,6 @@
 const store = require('../store')
 
 const onIndexSuccess = function (responseData) {
-  console.log(responseData)
   $('#game-display').html('')
   responseData.games.forEach(game => {
     const gameHTML = (`
@@ -24,8 +23,7 @@ const onGetGamesSuccess = responseData => {
       $('#games-length')
         .text('')
     }, 5000)
-    console.log(lengthGames)
-  } console.log(responseData.games.length)
+  }
 }
 
 const onShowSuccess = function (responseData) {
@@ -58,7 +56,6 @@ const onCreateSuccess = function (responseData) {
   store.currentPlayer = store.player1
   store.gameOver = false
   store.winner = ''
-  console.log(store.game)
 }
 
 const onClickforXSuccess = function (responseData) {
@@ -86,8 +83,7 @@ const onClickforOSuccess = function (responseData) {
   store.game = responseData.game
 }
 
-const onError = function (err) {
-  console.error(err)
+const onError = function () {
   $('#gameboard-message')
     .text('Something went wrong, please try again.')
     .addClass('failure')

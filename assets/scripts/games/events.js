@@ -108,7 +108,7 @@ const onSwitchPlayer = (event) => {
   } else if (store.currentPlayer === 'O') {
     onClickforO(event)
     store.currentPlayer = store.player1
-  } console.log('currentPlayer is', store.currentPlayer)
+  }
 }
 
 const isGameOver = () => {
@@ -139,7 +139,6 @@ const checkForWinner = () => {
     (store.gameboard[0] === 'X' && store.gameboard[4] === 'X' && store.gameboard[8] === 'X') ||
     (store.gameboard[2] === 'X' && store.gameboard[4] === 'X' && store.gameboard[6] === 'X')
   ) {
-    console.log('Player X wins!')
     store.winner = 'Player X wins!'
     store.gameOver = true
   } else if (
@@ -152,7 +151,6 @@ const checkForWinner = () => {
     (store.gameboard[0] === 'O' && store.gameboard[4] === 'O' && store.gameboard[8] === 'O') ||
     (store.gameboard[2] === 'O' && store.gameboard[4] === 'O' && store.gameboard[6] === 'O')
   ) {
-    console.log('Player O wins!')
     store.winner = 'Player O wins!'
     store.gameOver = true
   } else if (
@@ -160,7 +158,6 @@ const checkForWinner = () => {
     store.gameboard[3] !== '' && store.gameboard[4] !== '' && store.gameboard[5] !== '' &&
     store.gameboard[6] !== '' && store.gameboard[7] !== '' && store.gameboard[8] !== '')
   ) {
-    console.log('Tie game')
     store.gameOver = true
     store.winner = 'Tie Game! Time to start a new game!'
   }
@@ -172,49 +169,42 @@ const checkForWinner = () => {
     (gameboard[0] === 'X' && gameboard[1] === 'X' && gameboard[2] === 'X') ||
     (gameboard[0] === 'O' && gameboard[1] === 'O' && gameboard[2] === 'O')
   ) {
-    console.log('Winner!')
     $('#gameboard-message').text('Winner')
     store.gameOver = true
   } else if ( // 2nd row win
     (gameboard[3] === 'X' && gameboard[4] === 'X' && gameboard[5] === 'X') ||
     (gameboard[3] === 'O' && gameboard[4] === 'O' && gameboard[5] === 'O')
   ) {
-    console.log('Winner!')
     $('#gameboard-message').text('Winner')
     store.gameOver = true
   } else if ( // 3rd row win
     (gameboard[6] === 'X' && gameboard[7] === 'X' && gameboard[8] === 'X') ||
     (gameboard[6] === 'O' && gameboard[7] === 'O' && gameboard[8] === 'O')
   ) {
-    console.log('Winner!')
     $('#gameboard-message').text('Winner')
     store.gameOver = true
   } else if ( // 1st column win
     (gameboard[0] === 'X' && gameboard[3] === 'X' && gameboard[6] === 'X') ||
     (gameboard[0] === 'O' && gameboard[3] === 'O' && gameboard[6] === 'O')
   ) {
-    console.log('Winner!')
     $('#gameboard-message').text('Winner')
     store.gameOver = true
   } else if ( // 2nd column win
     (gameboard[1] === 'X' && gameboard[4] === 'X' && gameboard[7] === 'X') ||
     (gameboard[1] === 'O' && gameboard[4] === 'O' && gameboard[7] === 'O')
   ) {
-    console.log('Winner!')
     $('#gameboard-message').text('Winner')
     store.gameOver = true
   } else if ( // 3rd column win
     (gameboard[2] === 'X' && gameboard[5] === 'X' && gameboard[8] === 'X') ||
     (gameboard[2] === 'O' && gameboard[5] === 'O' && gameboard[8] === 'O')
   ) {
-    console.log('Winner!')
     $('#gameboard-message').text('Winner')
     store.gameOver = true
   } else if ( // diagonal win from top left
     (gameboard[0] === 'X' && gameboard[4] === 'X' && gameboard[8] === 'X') ||
     (gameboard[0] === 'O' && gameboard[4] === 'O' && gameboard[8] === 'O')
   ) {
-    console.log('Winner!')
     $('#gameboard-message').text('Winner')
     store.gameOver = true
   } else if ( // diagonal win from top right
@@ -224,9 +214,7 @@ const checkForWinner = () => {
     $('#gameboard-message').text('Winner')
     store.gameOver = true
   } else if (!(gameboard.includes(''))) {
-    console.log('Tie! No winner!')
   } else {
-    console.log(store.gameOver)
     store.gameOver = false
   }
 }
