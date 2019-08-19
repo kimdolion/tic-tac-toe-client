@@ -36,7 +36,8 @@ const signInSuccess = function (data) {
   }, 5000)
   store.user = data.user
   $('#hideOnceSignIn').css('display', 'none')
-  $('#hide').css('display', 'block')
+  $('#hide')
+    .css('display', 'block')
 }
 
 const signInFailure = function () {

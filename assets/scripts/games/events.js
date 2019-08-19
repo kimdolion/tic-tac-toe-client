@@ -269,12 +269,39 @@ const onCreateGame = function (event) {
     .catch(ui.onError)
 }
 
+/*
+const onHover = function (event) {
+  event.preventDefault()
+  if (store.currentPlayer === store.player1 && $(event.target).text() === '') {
+    $(event.target)
+      .css('background-color', 'coral')
+    $('.box').on('mouseout', onHoverOut)
+  } else {
+    $(event.target)
+      .css('background-color', 'lightblue')
+  }
+}
+
+const onHoverOut = function (event) {
+  event.preventDefault()
+  if (store.currentPlayer === store.player1) {
+    $(event.target)
+      .css('background-color', 'coral')
+    $('.box').on('mouseout', onHoverOut)
+  } else {
+    $(event.target)
+      .css('background-color', 'lightblue')
+  }
+}
+*/
+
 const addHandlers = () => {
   $('games-index').on('submit', onGetGames)
   $('game-show').on('submit', onShowGame)
   $('#create-game').on('click', onCreateGame)
   // $('.box').on('click', onSwitchPlayer)
   $('.box').on('click', onBoxClick)
+  // $('.box').on('mouseover', onHover)
   $('#games-played').on('click', onGetGamesLength)
 }
 
