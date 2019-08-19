@@ -1,10 +1,24 @@
 @import '~bootstrap/scss/bootstrap';
 
+@keyframes colorchange {
+  0% {background-color: #f5f5f5;}
+  25% {background-color: #caede0;}
+  50% {background-color: coral;}
+  75% {background-color: lightblue;}
+  100% {background-color: #f5f5f5;}
+}
+
 body {
   background-color: #f5f5f5;
+  margin: auto;
+}
+
+form {
+  padding: 10px;
 }
 
 header {
+  animation: colorchange 10s infinite;
   background-color: #caede0;
   text-align: center;
 }
@@ -16,16 +30,15 @@ p {
 .box {
   border: 2px solid #525252;
   font-size: 6rem;
-  height: 125px;
+  height: 21vmin;
   text-align: center;
-  width: 100px;
+  width: 8vh;
 }
-
+/*
 .container {
-  margin: 15 auto;
-  padding: 10px 25px;
+  padding: 10px 20px;
 }
-
+*/
 .failure {
   border: 2px solid red;
   color: red;

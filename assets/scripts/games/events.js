@@ -159,7 +159,7 @@ const checkForWinner = () => {
     store.gameboard[6] !== '' && store.gameboard[7] !== '' && store.gameboard[8] !== '')
   ) {
     store.gameOver = true
-    store.winner = 'Tie Game! Time to start a new game!'
+    store.winner = 'Tie Game!'
   }
 }
 

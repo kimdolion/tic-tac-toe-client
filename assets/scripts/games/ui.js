@@ -64,8 +64,12 @@ const onClickforXSuccess = function (responseData) {
     .css('background-color', 'coral')
   if (store.winner === '') {
     $('#gameboard-message').text('X took a turn! Now it\'s O\'s')
-  } else {
+  } else if (store.winner === 'Player X wins!') {
     $('#gameboard-message').text(store.winner)
+  } else if (store.winner === 'Tie Game!') {
+    $('#gameboard-message')
+      .text(store.winner)
+      .css('background-color', '#caede0')
   }
   store.currentPlayer = store.player2
   store.game = responseData.game
@@ -76,8 +80,12 @@ const onClickforOSuccess = function (responseData) {
     .css('background-color', 'lightblue')
   if (store.winner === '') {
     $('#gameboard-message').text('O took a turn! Now it\'s X\'s')
-  } else {
+  } else if (store.winner === 'Player O wins!') {
     $('#gameboard-message').text(store.winner)
+  } else if (store.winner === 'Tie Game!') {
+    $('#gameboard-message')
+      .text(store.winner)
+      .css('background-color', '#caede0')
   }
   store.currentPlayer = store.player1
   store.game = responseData.game
