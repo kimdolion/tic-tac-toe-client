@@ -13,15 +13,14 @@ const signUpSuccess = function (data) {
       .text('')
       .css('background-color', 'white')
       .removeClass('success')
-  }, 3000)
+  }, 5000)
 }
 
-const signUpFailure = function (error) {
+const signUpFailure = function () {
   $('#message')
-    .text(error)
+    .text('Error on sign up')
     .removeClass()
     .addClass('failure')
-  $('form').trigger('reset')
 }
 
 const signInSuccess = function (data) {
@@ -34,16 +33,15 @@ const signInSuccess = function (data) {
       .text('')
       .css('background-color', 'white')
       .removeClass('success')
-  }, 3000)
-  console.log(data)
+  }, 5000)
   store.user = data.user
   $('#hideOnceSignIn').css('display', 'none')
   $('#hide').css('display', 'block')
 }
 
-const signInFailure = function (error) {
+const signInFailure = function () {
   $('#message')
-    .text(error)
+    .text('Error on sign in')
     .removeClass()
     .addClass('failure')
   $('form').trigger('reset')
@@ -70,12 +68,12 @@ const signOutSuccess = function () {
       .text('')
       .css('background-color', 'white')
       .removeClass('success')
-  }, 3000)
+  }, 5000)
 }
 
-const signOutFailure = function (error) {
+const signOutFailure = function () {
   $('#message')
-    .text(error)
+    .text('Error on sign out')
     .removeClass()
     .addClass('failure')
 }
@@ -88,14 +86,20 @@ const changePasswordSuccess = function () {
     .addClass('success')
   $('form').trigger('reset')
   $('#hide').css('display', 'block')
-  $('#hideOnceSignIn').css('display', 'block')
+  setTimeout(() => {
+    $('#message')
+      .text('')
+      .css('background-color', 'white')
+      .removeClass('success')
+  }, 5000)
 }
 
-const changePasswordFailure = function (error) {
-  $('#message').text(error)
+const changePasswordFailure = function () {
+  $('#message')
+    .text('Error on change password, please try again!')
     .removeClass()
     .addClass('failure')
-    .trigger('reset')
+  $('form').trigger('reset')
 }
 
 module.exports = {

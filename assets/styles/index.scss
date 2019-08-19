@@ -13,6 +13,16 @@
   padding: 10px 25px;
 }
 
+.failure {
+  color: red;
+  border: 2px solid red;
+}
+
+.success {
+  color: green;
+  border: 2px solid green;
+}
+
 #games-length {
   font-size: 3rem;
   height: 100px;
