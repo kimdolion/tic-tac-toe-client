@@ -25,7 +25,7 @@
             <input type="text" name="credentials[email]" placeholder="Email@email.com">
             <input type="password" name="credentials[password]" placeholder="Password">
             <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
-            <input type="submit" value="Sign Up">
+            <input type="submit" class="btn btn-outline-primary" value="Sign Up">
           </fieldset>
         </form>
         <form id="sign-in" class="border">
@@ -33,7 +33,7 @@
             <legend>Sign In</legend>
             <input type="text" name="credentials[email]" placeholder="Email@email.com">
             <input type="password" name="credentials[password]" placeholder="Password">
-            <input type="submit" value="Sign In">
+            <input type="submit" class="btn btn-outline-primary" value="Sign In">
           </fieldset>
         </form>
       </div>
@@ -60,18 +60,18 @@
             <div id="update-game-message" class="user-feedback"></div> -->
           </section>
           <section>
-            <form id="change-password" class="border col align-self-start">
+            <form id="change-password" class="border">
             <fieldset>
               <legend>Change Password</legend>
               <input type="password" name="passwords[old]" placeholder="Old Password">
               <input type="password" name="passwords[new]" placeholder="New Password">
-              <input type="submit" value="Change Password">
+              <input type="submit" class="btn btn-outline-secondary" value="Change Password">
             </fieldset>
             </form>
-            <form id="sign-out" class="border col align-self-end">
+            <form id="sign-out" class="border">
               <fieldset>
                 <legend>Sign Out</legend>
-                <input type="submit" value="Sign Out">
+                <input type="submit" class="btn btn-outline-dark" value="Sign Out">
               </fieldset>
             </form>
           </section>
@@ -100,7 +100,7 @@
             <div data-cell-index="8" class="col-4 border-right-0 border-bottom-0 box"></div>
           </div>
           <br>
-          <button id="games-played" type="button" class="btn btn-primary btn-lg">Games Played</button>
+          <button id="games-played" type="button" class="btn btn-outline-info btn-lg">Games Played</button>
           <div id='games-length'></div>
         </div>
       </div>

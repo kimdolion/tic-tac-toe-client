@@ -100,7 +100,7 @@ const onError = function () {
       .text('')
       .css('background-color', 'white')
       .removeClass('failure')
-  }, 3000)
+  }, 4000)
 }
 
 module.exports = {
