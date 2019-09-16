@@ -46,87 +46,6 @@ const onBoxClick = function (event) {
   }
 }
 
-/*
-const onBoxClick = function (event) {
-  if ($(event.target).text() === '' && store.gameOver === false) {
-    if (store.currentPlayer === store.player1) {
-      gameboard[$(event.target).data('cell-index')] = 'X'
-      $(event.target)
-        .css('background-color', 'coral') // changes div bg to coral
-        .text('X')
-      api.updateGame()
-        .then(ui.onClickforXSuccess)
-        .catch(ui.onError)
-    }
-  } else if (store.currentPlayer === store.player2) {
-    gameboard[$(event.target).data('cell-index')] = 'O'
-    $(event.target)
-      .css('background-color', 'lightblue') // changes div bg to lightblue
-      .text('O') // fills empty space with O
-    const data = getFormFields(event.target)
-    api.updateGame(data.game)
-      .then(ui.onClickforOSuccess)
-      .catch(ui.onError)
-  }
-  checkForWinner()
-}
-/*
-const onClickforX = function (event) {
-  if ($(event.target).text() === '' && store.gameOver === false) {
-    gameboard[$(event.target).data('cell-index')] = 'X'
-    $(event.target)
-      .css('background-color', 'coral') // changes div bg to coral
-      .text('X')
-    checkForWinner()
-    // api call update vs create?
-    const data = getFormFields(event.target)
-    api.updateGame(data.game.id)
-      .then(ui.onClickforXSuccess)
-      .catch(ui.onError)
-  }
-}
-
-const onClickforO = function (event) {
-  if ($(event.target).text() === '' && store.gameOver === false) {
-    gameboard[$(event.target).data('cell-index')] = 'O'
-    $(event.target)
-      .css('background-color', 'lightblue')
-      .text('O') // fills empty space with O
-    checkForWinner()
-    // api call
-    const data = getFormFields(event.target)
-    api.updateGame(data.game.id)
-      .then(ui.onClickforOSuccess)
-      .catch(ui.onError)
-  }
-}
-
-const onSwitchPlayer = (event) => {
-  if (store.currentPlayer === 'X') {
-    onClickforX(event)
-    store.currentPlayer = store.player2
-  } else if (store.currentPlayer === 'O') {
-    onClickforO(event)
-    store.currentPlayer = store.player1
-  }
-}
-
-const isGameOver = () => {
-  if (checkForWinner() === true) {
-    store.gameOver = true
-    store.currentPlayer = store.player1
-    // $('.box').off('click', onSwitchPlayer)
-  } else {
-    store.gameOver = false
-    if (store.currentPlayer === store.player1) {
-      store.currentPlayer = store.player2
-    } else {
-      store.currentPlayer = store.player1
-    }
-    // $('.box').on('click', onSwitchPlayer)
-  }
-}
-*/
 const checkForWinner = () => {
   // check for X win
   if (
@@ -163,62 +82,6 @@ const checkForWinner = () => {
   }
 }
 
-/*
-const checkForWinner = () => {
-  if ( // 1st row win
-    (gameboard[0] === 'X' && gameboard[1] === 'X' && gameboard[2] === 'X') ||
-    (gameboard[0] === 'O' && gameboard[1] === 'O' && gameboard[2] === 'O')
-  ) {
-    $('#gameboard-message').text('Winner')
-    store.gameOver = true
-  } else if ( // 2nd row win
-    (gameboard[3] === 'X' && gameboard[4] === 'X' && gameboard[5] === 'X') ||
-    (gameboard[3] === 'O' && gameboard[4] === 'O' && gameboard[5] === 'O')
-  ) {
-    $('#gameboard-message').text('Winner')
-    store.gameOver = true
-  } else if ( // 3rd row win
-    (gameboard[6] === 'X' && gameboard[7] === 'X' && gameboard[8] === 'X') ||
-    (gameboard[6] === 'O' && gameboard[7] === 'O' && gameboard[8] === 'O')
-  ) {
-    $('#gameboard-message').text('Winner')
-    store.gameOver = true
-  } else if ( // 1st column win
-    (gameboard[0] === 'X' && gameboard[3] === 'X' && gameboard[6] === 'X') ||
-    (gameboard[0] === 'O' && gameboard[3] === 'O' && gameboard[6] === 'O')
-  ) {
-    $('#gameboard-message').text('Winner')
-    store.gameOver = true
-  } else if ( // 2nd column win
-    (gameboard[1] === 'X' && gameboard[4] === 'X' && gameboard[7] === 'X') ||
-    (gameboard[1] === 'O' && gameboard[4] === 'O' && gameboard[7] === 'O')
-  ) {
-    $('#gameboard-message').text('Winner')
-    store.gameOver = true
-  } else if ( // 3rd column win
-    (gameboard[2] === 'X' && gameboard[5] === 'X' && gameboard[8] === 'X') ||
-    (gameboard[2] === 'O' && gameboard[5] === 'O' && gameboard[8] === 'O')
-  ) {
-    $('#gameboard-message').text('Winner')
-    store.gameOver = true
-  } else if ( // diagonal win from top left
-    (gameboard[0] === 'X' && gameboard[4] === 'X' && gameboard[8] === 'X') ||
-    (gameboard[0] === 'O' && gameboard[4] === 'O' && gameboard[8] === 'O')
-  ) {
-    $('#gameboard-message').text('Winner')
-    store.gameOver = true
-  } else if ( // diagonal win from top right
-    (gameboard[2] === 'X' && gameboard[4] === 'X' && gameboard[6] === 'X') ||
-    (gameboard[2] === 'O' && gameboard[4] === 'O' && gameboard[6] === 'O')
-  ) {
-    $('#gameboard-message').text('Winner')
-    store.gameOver = true
-  } else if (!(gameboard.includes(''))) {
-  } else {
-    store.gameOver = false
-  }
-}
-*/
 const onGetGames = function () {
   const data = getFormFields(event.target)
   api.indexGames(data.game)
@@ -240,15 +103,7 @@ const onShowGame = function (event) {
     .then(ui.onShowSuccess)
     .catch(ui.onError)
 }
-/*
-const onUpdateGame = function (event) {
-  event.preventDefault()
-  const data = getFormFields(event.target)
-  api.updateGame(data.game.id)
-    .then(ui.onUpdateSuccess)
-    .catch(ui.onError)
-}
-*/
+
 const onCreateGame = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
@@ -257,39 +112,11 @@ const onCreateGame = function (event) {
     .catch(ui.onError)
 }
 
-/*
-const onHover = function (event) {
-  event.preventDefault()
-  if (store.currentPlayer === store.player1 && $(event.target).text() === '') {
-    $(event.target)
-      .css('background-color', 'coral')
-    $('.box').on('mouseout', onHoverOut)
-  } else {
-    $(event.target)
-      .css('background-color', 'lightblue')
-  }
-}
-
-const onHoverOut = function (event) {
-  event.preventDefault()
-  if (store.currentPlayer === store.player1) {
-    $(event.target)
-      .css('background-color', 'coral')
-    $('.box').on('mouseout', onHoverOut)
-  } else {
-    $(event.target)
-      .css('background-color', 'lightblue')
-  }
-}
-*/
-
 const addHandlers = () => {
   $('games-index').on('submit', onGetGames)
   $('game-show').on('submit', onShowGame)
   $('#create-game').on('click', onCreateGame)
-  // $('.box').on('click', onSwitchPlayer)
   $('.box').on('click', onBoxClick)
-  // $('.box').on('mouseover', onHover)
   $('#games-played').on('click', onGetGamesLength)
 }
 
