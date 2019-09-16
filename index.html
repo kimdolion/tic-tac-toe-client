@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Tic Tac Toe</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body>
+    <main>
+    <header>
+      <h2>Welcome to Kimdolion's Tic-Tac-Toe!</h2>
+      <p>Please do not use real logins!</p>
+    </header>
+      <div id="message"></div>
+      <div id="hideOnceSignIn">
+        <form id="sign-up" class="border">
+          <fieldset>
+            <legend>Sign Up</legend>
+            <input type="text" name="credentials[email]" placeholder="Email@email.com">
+            <input type="password" name="credentials[password]" placeholder="Password">
+            <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
+            <input type="submit" class="btn btn-outline-primary" value="Sign Up">
+          </fieldset>
+        </form>
+        <form id="sign-in" class="border">
+          <fieldset>
+            <legend>Sign In</legend>
+            <input type="text" name="credentials[email]" placeholder="Email@email.com">
+            <input type="password" name="credentials[password]" placeholder="Password">
+            <input type="submit" class="btn btn-outline-primary" value="Sign In">
+          </fieldset>
+        </form>
+      </div>
+      <div id="hide">
+        <section id="hideUntilGames">
+
+          <legend>Get All Games</legend>
+          <!--
+          <button id="games-index">Get All Games</button>
+          <hr>
+          <legend>Show One Game</legend>
+          <form id="game-show">
+            <input required type="number" min="0" name="game[id]" placeholder="Game ID Here">
+            <button type="submit">Show A Game</button>
+          </form>
+          <hr>
+          <legend>Update One Game</legend>
+          <form id="game-update">
+            <input required type="number" name="game[id]" id="game-id-update" placeholder="Game ID Here">
+              <input required type="text" name="game[title]" placeholder="Game Title Here">
+              <input required type="text" name="game[author]" placeholder="Game Author Here">
+              <button type="submit">Update Game</button>
+            </form>
+            <div id="update-game-message" class="user-feedback"></div> -->
+          </section>
+          <section>
+            <form id="change-password" class="border">
+            <fieldset>
+              <legend>Change Password</legend>
+              <input type="password" name="passwords[old]" placeholder="Old Password">
+              <input type="password" name="passwords[new]" placeholder="New Password">
+              <input type="submit" class="btn btn-outline-secondary" value="Change Password">
+            </fieldset>
+            </form>
+            <form id="sign-out" class="border">
+              <fieldset>
+                <legend>Sign Out</legend>
+                <input type="submit" class="btn btn-outline-dark" value="Sign Out">
+              </fieldset>
+            </form>
+          </section>
+          <br>
+          <div id='all-of-the-buttons'>
+          <button id="create-game" type="button" class="btn btn-primary justify-content-center btn-lg">New Game</button>
+          <!--<button id="display-games-info" type="button" class="btn btn-secondary d-flex justify-content-end btn-lg">Display Games Info.</button> -->
+        </div>
+      </div>
+      <div id="hideUntilNewGame">
+        <div id="gameboard-message"></div>
+        <section>
+          <div id="error-message" class="user-feedback"></div>
+          <div id="game-display"></div>
+        </section>
+        <div class="container">
+          <div class="row">
+            <div data-cell-index="0" class="col-4 border-left-0 border-top-0 box"></div>
+            <div data-cell-index="1" class="col-4 border-top-0 box"></div>
+            <div data-cell-index="2" class="col-4 border-right-0 border-top-0 box"></div>
+            <div data-cell-index="3" class="col-4 border-left-0 box"></div>
+            <div data-cell-index="4" class="col-4 box"></div>
+            <div data-cell-index="5" class="col-4 border-right-0 box"></div>
+            <div data-cell-index="6" class="col-4 border-left-0 border-bottom-0 box"></div>
+            <div data-cell-index="7" class="col-4 border-bottom-0 box"></div>
+            <div data-cell-index="8" class="col-4 border-right-0 border-bottom-0 box"></div>
+          </div>
+          <br>
+          <button id="games-played" type="button" class="btn btn-outline-info btn-lg">Games Played</button>
+          <div id='games-length'></div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
